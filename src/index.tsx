@@ -8,8 +8,11 @@ const server = serve({
     "/assets/:path+": async (req) => {
       const p = req.params.path;
       const file = Bun.file(`./src/assets/${p}`);
+      if (!(await file.exists())) return new Response("Not found", { status: 404 });
       return new Response(file);
     },
+    // Favicon convenience routes
+    "/favicon.svg": async () => new Response(Bun.file("./src/assets/favicon.svg")),
 
     // Serve blog page
     "/blog.html": blog,
