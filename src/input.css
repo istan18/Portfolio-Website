@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-cream;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-full;
+  }
+  
+  /* Tooltip styles */
+  [data-tooltip]::after {
+    content: attr(data-tooltip);
+    @apply absolute bottom-[-45px] left-1/2 -translate-x-1/2 translate-y-2.5 bg-white text-primary px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap opacity-0 pointer-events-none transition-all duration-300 shadow-lg font-poppins;
+  }
+  
+  [data-tooltip]:hover::after {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-peach bg-clip-text text-transparent;
+  }
+  
+  .animate-fadeInUp {
+    animation: fadeInUp 0.8s ease;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

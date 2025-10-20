@@ -1,37 +1,41 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { APITester } from "./APITester";
-import "./index.css";
-
-import logo from "./logo.svg";
-import reactLogo from "./react.svg";
+import React, { useEffect, useState } from "react";
+import Navbar from "./components/Navbar";
+import MobileMenu from "./components/MobileMenu";
+import Footer from "./components/Footer";
+import HomePage from "./pages/Home";
 
 export function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [showTop, setShowTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShowTop(window.pageYOffset > 300);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <div className="container mx-auto p-8 text-center relative z-10">
-      <div className="flex justify-center items-center gap-8 mb-8">
-        <img
-          src={logo}
-          alt="Bun Logo"
-          className="h-36 p-6 transition-all duration-300 hover:drop-shadow-[0_0_2em_#646cffaa] scale-120"
-        />
-        <img
-          src={reactLogo}
-          alt="React Logo"
-          className="h-36 p-6 transition-all duration-300 hover:drop-shadow-[0_0_2em_#61dafbaa] [animation:spin_20s_linear_infinite]"
-        />
-      </div>
-      <Card>
-        <CardHeader className="gap-4">
-          <CardTitle className="text-3xl font-bold">Bun + React</CardTitle>
-          <CardDescription>
-            Edit <code className="rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono">src/App.tsx</code> and save to
-            test HMR
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <APITester />
-        </CardContent>
-      </Card>
+    <div className="font-nunito bg-gradient-to-br from-cream via-[#fffbf0] to-[#fff5e6]">
+      <Navbar onToggleMenu={() => setMenuOpen((v) => !v)} />
+      <MobileMenu open={menuOpen} onNavigate={() => setMenuOpen(false)} />
+
+      <HomePage />
+
+      <Footer />
+
+      {showTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-7 right-7 w-[55px] h-[55px] rounded-full border-2 border-white text-white text-lg shadow-lg transition transform hover:-translate-y-1"
+          style={{
+            background: "linear-gradient(135deg, #ffe3bf 0%, #f3b49a 100%)",
+            boxShadow: "0 6px 25px rgba(243,180,154,0.28)",
+            zIndex: 1000,
+          }}
+        >
+          <i className="fas fa-arrow-up" />
+        </button>
+      )}
     </div>
   );
 }

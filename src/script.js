@@ -1,28 +1,21 @@
-// Mobile Navigation Toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
+// Mobile Navigation Toggle (Tailwind version)
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    
-    // Animate hamburger
-    const spans = hamburger.querySelectorAll('span');
-    spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
-    spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
-    spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(7px, -6px)' : 'none';
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+    }
 });
 
-// Close mobile menu when clicking on a link
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        const spans = hamburger.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-    });
-});
+// Smooth scrolling for anchor links
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -40,22 +33,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Navbar background on scroll
-const navbar = document.querySelector('.navbar');
+const navbar = document.querySelector('nav');
 let lastScroll = 0;
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 100) {
+if (navbar) {
+    // Ensure navbar has background on load
+    document.addEventListener('DOMContentLoaded', () => {
         navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
         navbar.style.backdropFilter = 'blur(10px)';
-    } else {
-        navbar.style.backgroundColor = 'var(--bg-white)';
-        navbar.style.backdropFilter = 'none';
-    }
-    
-    lastScroll = currentScroll;
-});
+    });
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 100) {
+            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.backdropFilter = 'blur(10px)';
+        } else {
+            // Keep the same light background at the top
+            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.backdropFilter = 'blur(10px)';
+        }
+        
+        lastScroll = currentScroll;
+    });
+}
 
 // Intersection Observer for fade-in animations
 const observerOptions = {
@@ -81,7 +83,7 @@ animatedElements.forEach(el => {
     observer.observe(el);
 });
 
-// Active nav link on scroll
+// Active nav link on scroll (safe for Tailwind version)
 const sections = document.querySelectorAll('section[id]');
 
 window.addEventListener('scroll', () => {
@@ -93,7 +95,7 @@ window.addEventListener('scroll', () => {
         const sectionId = current.getAttribute('id');
         
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            document.querySelectorAll('.nav-link').forEach(link => {
+            document.querySelectorAll('nav a[href^="#"], #mobileMenu a[href^="#"]').forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === `#${sectionId}`) {
                     link.classList.add('active');
@@ -134,14 +136,14 @@ const createScrollTopButton = () => {
         width: 55px;
         height: 55px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #ffd6a5 0%, #e09f7d 100%);
+background: linear-gradient(135deg, #ffe3bf 0%, #f3b49a 100%);
         color: white;
         border: 3px solid white;
         cursor: pointer;
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-        box-shadow: 0 6px 25px rgba(224, 159, 125, 0.3);
+box-shadow: 0 6px 25px rgba(243, 180, 154, 0.28);
         z-index: 1000;
         font-size: 1.3rem;
     `;
@@ -167,12 +169,12 @@ const createScrollTopButton = () => {
     
     button.addEventListener('mouseenter', () => {
         button.style.transform = 'translateY(-5px) scale(1.1)';
-        button.style.boxShadow = '0 8px 30px rgba(224, 159, 125, 0.4)';
+button.style.boxShadow = '0 8px 30px rgba(243, 180, 154, 0.35)';
     });
     
     button.addEventListener('mouseleave', () => {
         button.style.transform = 'translateY(0) scale(1)';
-        button.style.boxShadow = '0 6px 25px rgba(224, 159, 125, 0.3)';
+button.style.boxShadow = '0 6px 25px rgba(243, 180, 154, 0.28)';
     });
 };
 

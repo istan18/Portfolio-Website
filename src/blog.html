@@ -7,7 +7,38 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#f3b49a',
+              peach: '#ffe3bf',
+              lavender: '#eae2ff',
+              cream: '#fffbf2',
+              'cute-brown': '#8f7c73'
+            },
+            fontFamily: {
+              fredoka: ['Fredoka', 'sans-serif'],
+              nunito: ['Nunito', 'sans-serif'],
+              poppins: ['Poppins', 'sans-serif']
+            },
+            backgroundSize: { '200': '200% 200%' },
+            animation: { float: 'float 3s ease-in-out infinite', 'gradient-shift': 'gradientShift 15s ease infinite' },
+            keyframes: {
+              float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-10px)' } },
+              gradientShift: { '0%': { backgroundPosition: '0% 50%' }, '50%': { backgroundPosition: '100% 50%' }, '100%': { backgroundPosition: '0% 50%' } }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      html { scroll-behavior: smooth; }
+      [data-tooltip]::after { content: attr(data-tooltip); position: absolute; bottom: -45px; left: 50%; transform: translateX(-50%) translateY(10px); background: white; color: #e09f7d; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; pointer-events: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.15); font-family: 'Poppins', sans-serif; }
+      [data-tooltip]:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .blog-hero {
@@ -198,39 +229,50 @@
         }
     </style>
 </head>
-<body>
+<body class="font-nunito">
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="nav-brand">Christian Tolentino</a>
-            <ul class="nav-menu">
-                <li><a href="index.html#home" class="nav-link">Home</a></li>
-                <li><a href="index.html#about" class="nav-link">About</a></li>
-                <li><a href="index.html#experience" class="nav-link">Experience</a></li>
-                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
-                <li><a href="index.html#skills" class="nav-link">Skills</a></li>
-                <li><a href="blog.html" class="nav-link">Blog</a></li>
-                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b-[3px] border-primary shadow-[0_2px_20px_rgba(224,159,125,0.15)] z-[1000] transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-5 flex justify-between items-center py-4">
+            <a href="index.html" class="text-2xl font-bold text-gradient font-fredoka tracking-wide no-underline">Christian Tolentino</a>
+            <ul class="hidden md:flex list-none gap-8">
+                <li><a href="index.html#home" class="no-underline text-cute-brown font-semibold text-[0.95rem] transition-all duration-300 relative hover:text-primary hover:after:w-full after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[3px] after:bg-gradient-to-r after:from-primary after:to-peach after:rounded-full after:transition-all after:duration-300">Home</a></li>
+                <li><a href="index.html#about" class="no-underline text-cute-brown font-semibold text-[0.95rem] transition-all duration-300 relative hover:text-primary hover:after:w-full after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[3px] after:bg-gradient-to-r after:from-primary after:to-peach after:rounded-full after:transition-all after:duration-300">About</a></li>
+                <li><a href="index.html#experience" class="no-underline text-cute-brown font-semibold text-[0.95rem] transition-all duration-300 relative hover:text-primary hover:after:w-full after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[3px] after:bg-gradient-to-r after:from-primary after:to-peach after:rounded-full after:transition-all after:duration-300">Experience</a></li>
+                <li><a href="index.html#projects" class="no-underline text-cute-brown font-semibold text-[0.95rem] transition-all duration-300 relative hover:text-primary hover:after:w-full after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[3px] after:bg-gradient-to-r after:from-primary after:to-peach after:rounded-full after:transition-all after:duration-300">Projects</a></li>
+                <li><a href="index.html#skills" class="no-underline text-cute-brown font-semibold text-[0.95rem] transition-all duration-300 relative hover:text-primary hover:after:w-full after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[3px] after:bg-gradient-to-r after:from-primary after:to-peach after:rounded-full after:transition-all after:duration-300">Skills</a></li>
+                <li><a href="blog.html" class="no-underline text-cute-brown font-semibold text-[0.95rem] transition-all duration-300 relative hover:text-primary hover:after:w-full after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[3px] after:bg-gradient-to-r after:from-primary after:to-peach after:rounded-full after:transition-all after:duration-300">Blog</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="md:hidden flex flex-col gap-1 cursor-pointer" id="hamburger">
+                <span class="w-[25px] h-[3px] bg-gradient-to-r from-primary to-peach rounded transition-all duration-300"></span>
+                <span class="w-[25px] h-[3px] bg-gradient-to-r from-primary to-peach rounded transition-all duration-300"></span>
+                <span class="w-[25px] h-[3px] bg-gradient-to-r from-primary to-peach rounded transition-all duration-300"></span>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden fixed top-16 left-0 w-full bg-white/95 backdrop-blur z-[900] border-b-2 border-primary shadow hidden">
+        <ul class="flex flex-col items-center gap-4 py-6">
+            <li><a href="index.html#home" class="no-underline text-cute-brown font-semibold hover:text-primary">Home</a></li>
+            <li><a href="index.html#about" class="no-underline text-cute-brown font-semibold hover:text-primary">About</a></li>
+            <li><a href="index.html#experience" class="no-underline text-cute-brown font-semibold hover:text-primary">Experience</a></li>
+            <li><a href="index.html#projects" class="no-underline text-cute-brown font-semibold hover:text-primary">Projects</a></li>
+            <li><a href="index.html#skills" class="no-underline text-cute-brown font-semibold hover:text-primary">Skills</a></li>
+            <li><a href="blog.html" class="no-underline text-cute-brown font-semibold hover:text-primary">Blog</a></li>
+        </ul>
+    </div>
+
     <!-- Blog Hero -->
-    <section class="blog-hero">
-        <div class="container">
-            <h1>My Blog 📝✨</h1>
-            <p>Sharing my journey, learnings, and insights in tech</p>
+    <section class="pt-40 pb-16 bg-gradient-to-tr from-peach via-primary to-lavender text-white text-center">
+        <div class="max-w-7xl mx-auto px-5">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-2 font-poppins">My Blog 📝✨</h1>
+            <p class="text-lg opacity-95">Sharing my journey, learnings, and insights in tech</p>
         </div>
     </section>
 
     <!-- Blog Main Content -->
-    <section class="blog-main">
-        <div class="container">
+    <section class="py-16 bg-gradient-to-br from-white to-cream">
+        <div class="max-w-3xl mx-auto px-5">
             <a href="index.html#blog" class="back-link">
                 <i class="fas fa-arrow-left"></i> Back to Portfolio
             </a>
@@ -244,16 +286,16 @@
             </div>
 
             <!-- Blog Post 1 -->
-            <article id="post-1" class="blog-post-full">
-                <div class="blog-post-header">
-                    <div class="blog-meta">
-                        <span class="blog-date"><i class="far fa-calendar"></i> January 15, 2025</span>
-                        <span class="blog-read-time"><i class="far fa-clock"></i> 5 min read</span>
-                        <span class="blog-category">Tutorial</span>
+            <article id="post-1" class="bg-white rounded-2xl border-4 border-primary shadow p-8 mb-10">
+                <div class="mb-4">
+                    <div class="flex flex-wrap gap-4 text-cute-brown text-sm mb-2">
+                        <span class="flex items-center gap-2"><i class="far fa-calendar text-primary"></i> January 15, 2025</span>
+                        <span class="flex items-center gap-2"><i class="far fa-clock text-primary"></i> 5 min read</span>
+                        <span class="inline-block bg-white text-primary px-3 py-1 rounded-full text-sm font-bold shadow">Tutorial</span>
                     </div>
-                    <h2>Getting Started with Static Analysis in C++</h2>
+                    <h2 class="text-3xl font-extrabold text-cute-brown font-poppins">Getting Started with Static Analysis in C++</h2>
                 </div>
-                <div class="blog-post-body">
+                <div class="prose prose-pink max-w-none">
                     <p>
                         Static analysis is a powerful technique for finding bugs in your code before it even runs. 
                         In this post, I'll walk you through the fundamentals of static code analysis and introduce 
@@ -297,16 +339,16 @@ gets(buffer);  // SVF can detect this dangerous pattern!</code></pre>
             </article>
 
             <!-- Blog Post 2 -->
-            <article id="post-2" class="blog-post-full">
-                <div class="blog-post-header">
-                    <div class="blog-meta">
-                        <span class="blog-date"><i class="far fa-calendar"></i> January 10, 2025</span>
-                        <span class="blog-read-time"><i class="far fa-clock"></i> 8 min read</span>
-                        <span class="blog-category">Experience</span>
+            <article id="post-2" class="bg-white rounded-2xl border-4 border-primary shadow p-8 mb-10">
+                <div class="mb-4">
+                    <div class="flex flex-wrap gap-4 text-cute-brown text-sm mb-2">
+                        <span class="flex items-center gap-2"><i class="far fa-calendar text-primary"></i> January 10, 2025</span>
+                        <span class="flex items-center gap-2"><i class="far fa-clock text-primary"></i> 8 min read</span>
+                        <span class="inline-block bg-white text-primary px-3 py-1 rounded-full text-sm font-bold shadow">Experience</span>
                     </div>
-                    <h2>My Internship Journey at Splunk</h2>
+                    <h2 class="text-3xl font-extrabold text-cute-brown font-poppins">My Internship Journey at Splunk</h2>
                 </div>
-                <div class="blog-post-body">
+                <div class="prose prose-pink max-w-none">
                     <p>
                         Working at Splunk as a Backend Software Engineer was an incredible learning experience. 
                         I spent 16 weeks diving deep into build systems, workflow automation, and infrastructure 
@@ -354,16 +396,16 @@ gets(buffer);  // SVF can detect this dangerous pattern!</code></pre>
             </article>
 
             <!-- Blog Post 3 -->
-            <article id="post-3" class="blog-post-full">
-                <div class="blog-post-header">
-                    <div class="blog-meta">
-                        <span class="blog-date"><i class="far fa-calendar"></i> January 5, 2025</span>
-                        <span class="blog-read-time"><i class="far fa-clock"></i> 6 min read</span>
-                        <span class="blog-category">Technology</span>
+            <article id="post-3" class="bg-white rounded-2xl border-4 border-primary shadow p-8 mb-10">
+                <div class="mb-4">
+                    <div class="flex flex-wrap gap-4 text-cute-brown text-sm mb-2">
+                        <span class="flex items-center gap-2"><i class="far fa-calendar text-primary"></i> January 5, 2025</span>
+                        <span class="flex items-center gap-2"><i class="far fa-clock text-primary"></i> 6 min read</span>
+                        <span class="inline-block bg-white text-primary px-3 py-1 rounded-full text-sm font-bold shadow">Technology</span>
                     </div>
-                    <h2>Building a Self-Sovereign Identity Wallet</h2>
+                    <h2 class="text-3xl font-extrabold text-cute-brown font-poppins">Building a Self-Sovereign Identity Wallet</h2>
                 </div>
-                <div class="blog-post-body">
+                <div class="prose prose-pink max-w-none">
                     <p>
                         StreetCred was one of the most exciting projects I've worked on - a mobile application 
                         that gives users complete control over their digital identity. Let me walk you through 
@@ -418,12 +460,44 @@ gets(buffer);  // SVF can detect this dangerous pattern!</code></pre>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
+    <footer class="bg-gradient-to-r from-primary to-peach text-white text-center py-6 font-medium">
+        <div class="max-w-7xl mx-auto px-5">
             <p>&copy; 2025 Christian Tolentino. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <div id="ui-root"></div>
+    <script type="module">
+      import React, { useEffect, useState } from 'https://esm.sh/react@19';
+      import { createRoot } from 'https://esm.sh/react-dom@19/client';
+
+      function UI() {
+        const [menuOpen, setMenuOpen] = useState(false);
+        useEffect(() => {
+          const nav = document.querySelector('nav');
+          if (nav) {
+            nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            nav.style.backdropFilter = 'blur(10px)';
+          }
+          const h = document.getElementById('hamburger');
+          const handler = () => setMenuOpen(v => !v);
+          if (h) h.addEventListener('click', handler);
+          return () => { if (h) h.removeEventListener('click', handler); };
+        }, []);
+        useEffect(() => {
+          const menu = document.getElementById('mobileMenu');
+          if (!menu) return;
+          if (menuOpen) menu.classList.remove('hidden'); else menu.classList.add('hidden');
+          const links = menu.querySelectorAll('a');
+          const close = () => setMenuOpen(false);
+          links.forEach(l => l.addEventListener('click', close));
+          return () => links.forEach(l => l.removeEventListener('click', close));
+        }, [menuOpen]);
+        return null;
+      }
+
+      const mount = document.getElementById('ui-root');
+      createRoot(mount).render(React.createElement(UI));
+    </script>
 </body>
 </html>

@@ -4,6 +4,13 @@ import blog from "./blog.html";
 
 const server = serve({
   routes: {
+    // Serve static assets from /src/assets at /assets/*
+    "/assets/:path+": async (req) => {
+      const p = req.params.path;
+      const file = Bun.file(`./src/assets/${p}`);
+      return new Response(file);
+    },
+
     // Serve blog page
     "/blog.html": blog,
     "/blog": blog,
