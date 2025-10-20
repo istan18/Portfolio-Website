@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Christian Tolentino</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .blog-hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, var(--peach) 0%, var(--primary-color) 50%, var(--lavender) 100%);
+            text-align: center;
+            color: white;
+        }
+        
+        .blog-hero h1 {
+            font-size: 3rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+        
+        .blog-main {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #fff 0%, var(--bg-light) 100%);
+        }
+        
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--peach));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(224, 159, 125, 0.3);
+        }
+        
+        .blog-post-full {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 6px 25px rgba(224, 159, 125, 0.15);
+        }
+        
+        .blog-post-header {
+            margin-bottom: 2rem;
+        }
+        
+        .blog-post-header h2 {
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+        }
+        
+        .blog-post-body {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        
+        .blog-post-body h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        .blog-post-body h4 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.75rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        
+        .blog-post-body p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-post-body code {
+            background: var(--bg-light);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary-color);
+        }
+        
+        .blog-post-body ul {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+        
+        .blog-post-body ul li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+        
+        .blog-post-body ol {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+        
+        .blog-post-body ol li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+        
+        .blog-post-body strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+        
+        .blog-post-body em {
+            font-style: italic;
+        }
+        
+        .blog-post-body a {
+            color: var(--primary-color);
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        
+        .blog-post-body a:hover {
+            color: var(--peach);
+        }
+        
+        .blog-post-body blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        
+        .blog-post-body pre {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 2px solid var(--border-color);
+        }
+        
+        .blog-post-body pre code {
+            background: none;
+            padding: 0;
+            color: var(--text-primary);
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            transform: translateX(-5px);
+            color: var(--peach);
+        }
+        
+        .blog-post-full:not(:last-child) {
+            margin-bottom: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-brand">Christian Tolentino</a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#experience" class="nav-link">Experience</a></li>
+                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1>My Blog 📝✨</h1>
+            <p>Sharing my journey, learnings, and insights in tech</p>
+        </div>
+    </section>
+
+    <!-- Blog Main Content -->
+    <section class="blog-main">
+        <div class="container">
+            <a href="index.html#blog" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+
+            <!-- Filter Buttons -->
+            <div class="blog-filters">
+                <button class="filter-btn active">All Posts</button>
+                <button class="filter-btn">Tutorial</button>
+                <button class="filter-btn">Experience</button>
+                <button class="filter-btn">Technology</button>
+            </div>
+
+            <!-- Blog Post 1 -->
+            <article id="post-1" class="blog-post-full">
+                <div class="blog-post-header">
+                    <div class="blog-meta">
+                        <span class="blog-date"><i class="far fa-calendar"></i> January 15, 2025</span>
+                        <span class="blog-read-time"><i class="far fa-clock"></i> 5 min read</span>
+                        <span class="blog-category">Tutorial</span>
+                    </div>
+                    <h2>Getting Started with Static Analysis in C++</h2>
+                </div>
+                <div class="blog-post-body">
+                    <p>
+                        Static analysis is a powerful technique for finding bugs in your code before it even runs. 
+                        In this post, I'll walk you through the fundamentals of static code analysis and introduce 
+                        you to some amazing tools that can help improve your code quality.
+                    </p>
+                    
+                    <h3>What is Static Analysis?</h3>
+                    <p>
+                        Static analysis examines code without executing it, looking for potential bugs, security 
+                        vulnerabilities, and code quality issues. Unlike dynamic analysis (which requires running 
+                        the code), static analysis can catch problems early in the development cycle.
+                    </p>
+                    
+                    <h3>Why Use Static Analysis?</h3>
+                    <p>
+                        Here are some key benefits:
+                    </p>
+                    <ul>
+                        <li>🐛 Find bugs before they reach production</li>
+                        <li>🔒 Identify security vulnerabilities</li>
+                        <li>✨ Improve code quality and maintainability</li>
+                        <li>⚡ Save time in code reviews</li>
+                        <li>📚 Learn best practices through automated feedback</li>
+                    </ul>
+                    
+                    <h3>Getting Started with SVF</h3>
+                    <p>
+                        SVF (Static Value Flow) is an open-source framework for static analysis on LLVM. It's 
+                        particularly powerful for pointer analysis and bug detection in C/C++ programs.
+                    </p>
+                    
+                    <pre><code>// Example: Simple buffer overflow detection
+char buffer[10];
+gets(buffer);  // SVF can detect this dangerous pattern!</code></pre>
+                    
+                    <p>
+                        Stay tuned for more in-depth tutorials on implementing custom static analysis passes 
+                        and integrating these tools into your CI/CD pipeline! 🚀
+                    </p>
+                </div>
+            </article>
+
+            <!-- Blog Post 2 -->
+            <article id="post-2" class="blog-post-full">
+                <div class="blog-post-header">
+                    <div class="blog-meta">
+                        <span class="blog-date"><i class="far fa-calendar"></i> January 10, 2025</span>
+                        <span class="blog-read-time"><i class="far fa-clock"></i> 8 min read</span>
+                        <span class="blog-category">Experience</span>
+                    </div>
+                    <h2>My Internship Journey at Splunk</h2>
+                </div>
+                <div class="blog-post-body">
+                    <p>
+                        Working at Splunk as a Backend Software Engineer was an incredible learning experience. 
+                        I spent 16 weeks diving deep into build systems, workflow automation, and infrastructure 
+                        at scale. Here's what I learned along the way.
+                    </p>
+                    
+                    <h3>The Build & Workflow Engine Team</h3>
+                    <p>
+                        I joined the Build & Workflow Engine team, responsible for maintaining and improving the 
+                        CI/CD infrastructure that thousands of engineers depend on daily. The tech stack included 
+                        Kubernetes, Argo Workflows, Bazel, and C++.
+                    </p>
+                    
+                    <h3>Key Takeaways</h3>
+                    <p>
+                        <strong>1. Scale Changes Everything</strong><br>
+                        Building systems that work for 10 users is very different from building for 10,000. 
+                        I learned to think about performance, reliability, and observability from day one.
+                    </p>
+                    
+                    <p>
+                        <strong>2. Documentation is Code</strong><br>
+                        Good documentation saves more time than clever code. I spent significant effort ensuring 
+                        my changes were well-documented and easy for others to understand.
+                    </p>
+                    
+                    <p>
+                        <strong>3. Testing is Non-Negotiable</strong><br>
+                        In infrastructure work, thorough testing isn't optional. One mistake can break builds 
+                        for hundreds of engineers, so we had comprehensive test coverage for everything.
+                    </p>
+                    
+                    <h3>Technical Challenges</h3>
+                    <p>
+                        Working with Bazel and Kubernetes presented unique challenges. Debugging distributed 
+                        systems requires a different mindset - you need to think about failure modes, retries, 
+                        and observability at every step.
+                    </p>
+                    
+                    <p>
+                        Would I recommend an internship at Splunk? Absolutely! The team was supportive, the 
+                        problems were interesting, and I grew significantly as an engineer. 🌟
+                    </p>
+                </div>
+            </article>
+
+            <!-- Blog Post 3 -->
+            <article id="post-3" class="blog-post-full">
+                <div class="blog-post-header">
+                    <div class="blog-meta">
+                        <span class="blog-date"><i class="far fa-calendar"></i> January 5, 2025</span>
+                        <span class="blog-read-time"><i class="far fa-clock"></i> 6 min read</span>
+                        <span class="blog-category">Technology</span>
+                    </div>
+                    <h2>Building a Self-Sovereign Identity Wallet</h2>
+                </div>
+                <div class="blog-post-body">
+                    <p>
+                        StreetCred was one of the most exciting projects I've worked on - a mobile application 
+                        that gives users complete control over their digital identity. Let me walk you through 
+                        how we built it and the technologies that power it.
+                    </p>
+                    
+                    <h3>What is Self-Sovereign Identity?</h3>
+                    <p>
+                        Self-Sovereign Identity (SSI) is a model where individuals own and control their digital 
+                        identities without relying on centralized authorities. Instead of Facebook or Google 
+                        holding your data, you do - storing it securely on your device.
+                    </p>
+                    
+                    <h3>The Tech Stack</h3>
+                    <p>
+                        We built StreetCred using:
+                    </p>
+                    <ul>
+                        <li>📱 React Native for cross-platform mobile development</li>
+                        <li>🔐 Advanced cryptography for secure credential storage</li>
+                        <li>🌐 Decentralized Identifiers (DIDs) for identity management</li>
+                        <li>🔗 Verifiable Credentials for trusted data sharing</li>
+                        <li>🎨 Tailwind CSS + Figma for beautiful UI/UX</li>
+                    </ul>
+                    
+                    <h3>Cryptographic Challenges</h3>
+                    <p>
+                        One of the biggest challenges was implementing secure key management. Users needed to 
+                        be able to prove their identity without revealing their private keys. We used:
+                    </p>
+                    <ul>
+                        <li>Asymmetric encryption for secure communication</li>
+                        <li>Zero-knowledge proofs for privacy-preserving verification</li>
+                        <li>Secure enclaves for key storage on mobile devices</li>
+                    </ul>
+                    
+                    <h3>User Experience</h3>
+                    <p>
+                        The hardest part? Making complex cryptography feel simple. We spent weeks iterating on 
+                        the UX, ensuring users could manage their identity without understanding the underlying 
+                        technology. The goal was "magical simplicity" - it just works. ✨
+                    </p>
+                    
+                    <p>
+                        Self-sovereign identity is the future of digital identity management. As privacy concerns 
+                        grow and users demand more control over their data, solutions like StreetCred will become 
+                        increasingly important.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Christian Tolentino. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
